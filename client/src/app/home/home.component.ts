@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, RegisterComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
   registerMode = false;
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit{
     }
 
   registerToggle(){
-    this.registerMode = !this.registerMode; 
+    this.registerMode = !this.registerMode;
   }
   getUsers(){
     this.http.get("https:localhost:5001/api/users")
@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit{
         next: res=> this.users = res,
         error: err=>console.log(err),
         complete: () => console.log("Se completo el request")
-        
-        
+
+
       })
   }
 }

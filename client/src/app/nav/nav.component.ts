@@ -5,10 +5,12 @@ import { AccountService } from '../services/account.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../models/user';
 import { Router, RouterModule } from '@angular/router';
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {provideToastr, ToastrModule, ToastrService} from "ngx-toastr";
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, BsDropdownModule, ToastrModule],
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']  // Change styleUrl to styleUrls
 })
@@ -19,19 +21,19 @@ export class NavComponent implements OnInit {
 
   dropdownVisible: boolean = false;
 
-  constructor(public accountService:AccountService, private router:Router){}
+  constructor(public accountService:AccountService, private router:Router, private tostr:ToastrService){}
   ngOnInit(): void {
   }
 
   login(){
     this.accountService.login(this.model).subscribe({
       next: () => this.router.navigateByUrl('/members'),
-      error: error=> console.log(error)
-      
+      error: error=> this.tostr.error(error.error)
+
     })
   }
   logout(){
-    this.accountService.logout(); 
+    this.accountService.logout();
     this.router.navigateByUrl('/');
   }
 

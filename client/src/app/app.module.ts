@@ -7,12 +7,12 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import {SharedModule} from "./_modules/shared.module";
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,8 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent,
     HomeComponent,
     FormsModule,
-    BsDropdownModule.forRoot()
+    SharedModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './member-list.component.html',
-  styleUrl: './member-list.component.css'
+  styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent {
 

@@ -2,12 +2,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from '../services/account.service';
+import {ToastrService} from "ngx-toastr";
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
   @Output() cancelRegister = new EventEmitter();
@@ -18,13 +19,13 @@ export class RegisterComponent {
       next: () => {
         this.cancelled()
       },
-      error: error=> console.log(error)
+      error: error=> this.toastr.error("error")
     })
 
   }
   cancelled(){
     this.cancelRegister.emit(false);
   }
-  constructor(private accountService:AccountService){
+  constructor(private accountService:AccountService, private toastr:ToastrService){
   }
 }
